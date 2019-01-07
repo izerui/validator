@@ -1,0 +1,31 @@
+<!-- 表单验证 -->
+<!ELEMENT validation (formset?)>
+
+
+<!-- 多个验证form集合 -->
+<!ELEMENT formset (form*)>
+
+<!--
+    验证表单,可自定义,比如区分行业,区分账套,区分类型等根据不同的名称加载不同的验证方案
+-->
+<!ELEMENT form (field*)>
+<!-- 属性名,用来区分验证表单,不可以包含特殊字符 -->
+<!ATTLIST form name CDATA #REQUIRED>
+<!-- 说明 -->
+<!ATTLIST form description CDATA #IMPLIED>
+<!-- 继承自其他form, 多个以逗号区分-->
+<!--<!ATTLIST form extends CDATA #IMPLIED>-->
+
+<!-- 要验证的字段 -->
+<!ELEMENT field (validator*)>
+<!-- 字段名 -->
+<!ATTLIST field name CDATA #REQUIRED>
+
+<!-- 选择一种验证器执行验证 -->
+<!ELEMENT validator (#PCDATA)>
+<!-- 执行的validator的名称 -->
+<!ATTLIST validator name CDATA #REQUIRED>
+<!-- 验证失败的错误信息 -->
+<!ATTLIST validator msg CDATA #REQUIRED>
+<!-- 传入的参数 -->
+<!ATTLIST validator var CDATA #IMPLIED>
